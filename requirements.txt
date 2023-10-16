@@ -6,7 +6,7 @@ cffi==1.14.3
 chardet==3.0.4
 click==7.1.2
 constantly==15.1.0
-cryptography==3.1
+cryptography==41.0.4
 cssselect==1.1.0
 Django==3.1.1
 hyperlink==20.0.1
@@ -16,7 +16,7 @@ itemadapter==0.1.0
 itemloaders==1.0.3
 jmespath==0.10.0
 joblib==0.16.0
-lxml==4.5.2
+lxml==4.9.3
 nltk==3.5
 parsel==1.6.0
 pdfminer==20191125
@@ -38,7 +38,7 @@ six==1.15.0
 SpeechRecognition==3.8.1
 sqlparse==0.3.1
 tqdm==4.48.2
-Twisted==20.3.0
+Twisted==21.2.0
 urllib3==1.25.10
 vaderSentiment==3.3.2
 w3lib==1.22.0

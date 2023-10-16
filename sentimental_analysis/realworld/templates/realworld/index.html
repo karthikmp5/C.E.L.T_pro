@@ -44,6 +44,7 @@
 </li><li class="u-nav-item"><a class="u-button-style u-nav-link u-text-active-palette-1-base u-text-black u-text-hover-palette-2-base" href="{% url 'input' %}" style="padding: 10px 64px;">Document Analysis</a>
 </li><li class="u-nav-item"><a class="u-button-style u-nav-link u-text-active-palette-1-base u-text-black u-text-hover-palette-2-base" href="{% url 'text analysis' %}" style="padding: 10px 64px;">Text</a>
 </li><li class="u-nav-item"><a class="u-button-style u-nav-link u-text-active-palette-1-base u-text-black u-text-hover-palette-2-base" href="{% url 'audio analysis' %}" style="padding: 10px 64px;">Audio</a>
+</li><li class="u-nav-item"><a class="u-button-style u-nav-link u-text-active-palette-1-base u-text-black u-text-hover-palette-2-base" href="{% url 'tweet analysis' %}" style="padding: 10px 64px;">Tweet Analysis</a>
 </li></ul>
           </div>
           <div class="u-custom-menu u-nav-container-collapse">
@@ -52,8 +53,8 @@
               <ul class="u-align-center u-nav u-popupmenu-items u-unstyled u-nav-2"><li class="u-nav-item"><a class="u-button-style u-nav-link"  href="{% url 'product analysis' %}" style="padding: 10px 64px;">Product Analysis</a>
 </li><li class="u-nav-item"><a class="u-button-style u-nav-link" href="{% url 'input' %}" style="padding: 10px 64px;">Document Analysis</a>
 </li><li class="u-nav-item"><a class="u-button-style u-nav-link" href="{% url 'text analysis' %}" style="padding: 10px 64px;">Text</a>
-</li><li class="u-nav-item"><a class="u-button-style u-nav-link" href="{% url 'audio analysis' %}" style="padding: 10px 64px;">Audio</a>
-</li></ul>
+</li><li class="u-nav-item"><a class="u-button-style u-nav-link" href="{% url 'audio analysis' %}" style="padding: 10px 64px;">Audio</a></li></ul>
+</li><li class="u-nav-item"><a class="u-button-style u-nav-link" href="{% url 'tweet analysis' %}" style="padding: 10px 64px;">Tweet Analysis</a></li></ul>
             </div>
             <div class="u-black u-menu-overlay u-opacity u-opacity-70"></div>
           </div>
@@ -127,6 +128,14 @@
                     <a class="u-active-none u-border-none u-btn u-button-link u-button-style u-hover-none u-none u-text-palette-1-base u-btn-4" href="{% url 'audio analysis' %}">Audio Analysis</a>
                   </h2>
                   <p class="u-text u-text-body-alt-color u-text-8">Want to analyse audio files and understand the sentiments of the speaker&nbsp;</p>
+                </div>
+              </div>
+              <div class="u-container-style u-layout-cell u-right-cell u-size-15 u-size-20-md u-layout-cell-5">
+                <div class="u-container-layout">
+                  <h2 class="u-align-center u-custom-font u-font-oswald u-text u-text-body-alt-color u-text-7">
+                    <a class="u-active-none u-border-none u-btn u-button-link u-button-style u-hover-none u-none u-text-palette-1-base u-btn-4" href="{% url 'tweet analysis' %}">Tweet Analysis</a>
+                  </h2>
+                  <p class="u-text u-text-body-alt-color u-text-8">Came across a tweet that you want to analyse and understand the sentiment&nbsp;</p>
                 </div>
               </div>
             </div>
