@@ -51,6 +51,10 @@ def get_clean_text(text):
     text = stripExtraWhiteSpaces(text)
 
     #Tokenize using nltk
+    try:
+        nltk.data.find('corpora/stopwords.zip')
+    except LookupError:
+        nltk.download('stopwords')
     tokens = nltk.word_tokenize(text)
 
     #Import stopwords
@@ -169,6 +173,14 @@ def textanalysis(request):
     else:
         note = "Enter the Text to be analysed!"
         return render(request, 'realworld/textanalysis.html', {'note': note})
+    
+def tweetanalysis(request):
+    note = "Enter the Text to be analysed!"
+    return render(request, 'realworld/tweetanalysis.html', {'note': note})
+
+def imageanalysis(request):
+    note = "HEY"
+    return render(request, 'realworld/imageanalysis.html', {'note': note})
 
 def audioanalysis(request):
     if request.method == 'POST':
