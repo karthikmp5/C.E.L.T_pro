@@ -28,7 +28,8 @@ urlpatterns = [
     url(r'^productanalysis',realworld.views.productanalysis,name = 'product analysis'),
     url(r'^textanalysis',realworld.views.textanalysis,name = 'text analysis'),
     url(r'^audioanalysis',realworld.views.audioanalysis,name = 'audio analysis'),
-    url(r'^tweetanalysis',realworld.views.tweetanalysis,name = 'tweet analysis')
+    url(r'^tweetanalysis',realworld.views.tweetanalysis,name = 'tweet analysis'),
+    url(r'^imageanalysis',realworld.views.imageanalysis,name = 'image analysis'),
 ]
 
 urlpatterns += static(settings.MEDIA_URL, document_root = settings.MEDIA_ROOT)

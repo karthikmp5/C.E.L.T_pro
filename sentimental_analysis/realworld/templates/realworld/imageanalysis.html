@@ -45,6 +45,7 @@
 </li><li class="u-nav-item"><a class="u-button-style u-nav-link u-text-active-palette-1-base u-text-black u-text-hover-palette-2-base" href="{% url 'text analysis' %}" style="padding: 10px 64px;">Text</a>
 </li><li class="u-nav-item"><a class="u-button-style u-nav-link u-text-active-palette-1-base u-text-black u-text-hover-palette-2-base" href="{% url 'audio analysis' %}" style="padding: 10px 64px;">Audio</a>
 </li><li class="u-nav-item"><a class="u-button-style u-nav-link u-text-active-palette-1-base u-text-black u-text-hover-palette-2-base" href="{% url 'tweet analysis' %}" style="padding: 10px 64px;">Tweet Analysis</a>
+</li><li class="u-nav-item"><a class="u-button-style u-nav-link u-text-active-palette-1-base u-text-black u-text-hover-palette-2-base" href="{% url 'image analysis' %}" style="padding: 10px 64px;">Image Analysis</a>
 </li></ul>
           </div>
           <div class="u-custom-menu u-nav-container-collapse">
@@ -55,6 +56,7 @@
 </li><li class="u-nav-item"><a class="u-button-style u-nav-link" href="{% url 'text analysis' %}" style="padding: 10px 64px;">Text</a>
 </li><li class="u-nav-item"><a class="u-button-style u-nav-link" href="{% url 'audio analysis' %}" style="padding: 10px 64px;">Audio</a>
 </li><li class="u-nav-item"><a class="u-button-style u-nav-link" href="{% url 'tweet analysis' %}" style="padding: 10px 64px;">Tweet Analysis</a>
+</li><li class="u-nav-item"><a class="u-button-style u-nav-link" href="{% url 'image analysis' %}" style="padding: 10px 64px;">Image Analysis</a>
 </li></ul>
             </div>
             <div class="u-black u-menu-overlay u-opacity u-opacity-70"></div>
@@ -87,7 +89,7 @@
 
 
 <h1 style="margin: auto; text-align: center; font-family: Ranchers;">{{ note }}</h1>
-<form action = "{% url "text analysis" %}" method = "post" enctype="multipart/form-data">
+<form action = "{% url "image analysis" %}" method = "post" enctype="multipart/form-data">
         {% csrf_token %}
     <label for = "Text"></label>
     <div class="container" style="width: 100%;">

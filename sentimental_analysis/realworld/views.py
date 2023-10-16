@@ -178,6 +178,10 @@ def tweetanalysis(request):
     note = "Enter the Text to be analysed!"
     return render(request, 'realworld/tweetanalysis.html', {'note': note})
 
+def imageanalysis(request):
+    note = "HEY"
+    return render(request, 'realworld/imageanalysis.html', {'note': note})
+
 def audioanalysis(request):
     if request.method == 'POST':
         file = request.FILES['document']
