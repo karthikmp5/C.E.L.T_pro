@@ -80,16 +80,18 @@
           </div>
         </nav>
       </div></header>
-<h1 style="margin: auto; text-align: center; font-family: Ranchers;">{{ note }}</h1>
+<h1 style="padding-top: 20px; padding-bottom: 20px;margin: auto; text-align: center; font-family: Ranchers;">{{ note }}</h1>
 <form action = "{% url "product analysis" %}" method = "post">
         {% csrf_token %}
     
-    <div class="container" style="width: 100%;">
-        <label for = "blogname">Blog URL</label>
+    <div class="container" style="width: 100%; text-align: center">
+        <label for = "blogname">Blog URL</label><br/>
     <input class="form-control form-control-lg" id = "blogname" type="text" name="blogname">
-    
-    <button class="btn btn-primary btn-lg" style="display: flex; align-items: center; justify-content: center;" type ="submit">Submit</button>
-</div>
+    <br/>
+    <br/>
+    <button class="btn btn-primary btn-lg" style="background-color: #007bff; color: #ffffff; border: none; padding: 10px 10px; font-size: 1rem; cursor: pointer; border-radius: 5px;" type ="submit" value="Submit">Submit</button>
+      
+  </div>
 </form>
 
 </body>
