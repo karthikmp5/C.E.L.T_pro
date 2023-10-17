@@ -91,9 +91,9 @@
 <h1 style="margin: auto; text-align: center; font-family: Ranchers;">{{ note }}</h1>
 <form action = "{% url "tweet analysis" %}" method = "post" enctype="multipart/form-data">
         {% csrf_token %}
-    <label for = "Text"></label>
+    <label for = "tweetlink"></label>
     <div class="container" style="width: 100%;">
-    <textarea class="form-control form-control-lg" type="textarea" name="Text" rows = "10" cols="50" >
+    <textarea class="form-control form-control-lg" type="text" name="tweetlink" rows = "10" cols="50" >
     </textarea>
     <br>
     <br>
