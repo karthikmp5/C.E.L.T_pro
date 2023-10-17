@@ -1,6 +1,9 @@
 from django.shortcuts import render
 from django.core.files.storage import FileSystemStorage
 import sys
+import requests
+from bs4 import BeautifulSoup
+from textblob import TextBlob
 from pdfminer.pdfinterp import PDFResourceManager, PDFPageInterpreter
 from pdfminer.pdfpage import PDFPage
 from django.template.defaulttags import register
@@ -94,6 +97,28 @@ def detailed_analysis(result):
 
     return result_dict
 
+
+def detailed_analysis2(sentiment_score):
+    result_dict = {}
+    neg_count = 0
+    pos_count = 0
+    neu_count = 0
+    if sentiment_score>0:
+        result_dict['pos'] = 100*sentiment_score
+        result_dict['neu'] = 100-(100*sentiment_score)
+        result_dict['neg'] = 0
+    elif sentiment_score<0:
+        result_dict['pos'] = 0
+        result_dict['neu'] = 100-(100*abs(sentiment_score))
+        result_dict['neg'] = 100 * abs(sentiment_score)
+    elif sentiment_score==0:
+        result_dict['pos'] = 0
+        result_dict['neu'] = 100
+        result_dict['neg'] = 0
+
+    return result_dict
+
+
 def input(request):
     if request.method=='POST':
         file = request.FILES['document']
@@ -175,8 +200,29 @@ def textanalysis(request):
         return render(request, 'realworld/textanalysis.html', {'note': note})
     
 def tweetanalysis(request):
-    note = "Enter the Text to be analysed!"
-    return render(request, 'realworld/tweetanalysis.html', {'note': note})
+    if request.method == 'POST':
+        tweetlink = request.POST.get("tweetlink", "")
+        response = requests.get(tweetlink)
+        if response.status_code == 200:
+            soup = BeautifulSoup(response.text, 'html.parser')
+            webpage_text = ' '.join([p.get_text() for p in soup.find_all('p')])
+            blob = TextBlob(webpage_text)
+            sentiment_score = blob.sentiment.polarity
+            if sentiment_score > 0:
+                sentiment = "positive"
+            elif sentiment_score < 0:
+                sentiment = "negative"
+            else:
+                sentiment = "neutral"
+        print("Webpage Analysis:")
+        result = detailed_analysis2(sentiment_score)
+        print(result)
+        return render(request, 'realworld/sentiment_graph.html', {'sentiment': result})
+    else:
+        note = "Enter the Link to be analysed!"
+        return render(request, 'realworld/tweetanalysis.html', {'note': note})
+
+
 
 def imageanalysis(request):
     note = "HEY"
