@@ -188,11 +188,21 @@ def productanalysis(request):
 
 def textanalysis(request):
     if request.method == 'POST':
-        text_data = request.POST.get("Text", "")
-        final_comment = text_data.split('.')
+        text = request.POST.get("Text", "")
+        blob = TextBlob(text)
+        sentiment_score = blob.sentiment.polarity
+        if sentiment_score > 0:
+            sentiment = "positive"
+        elif sentiment_score < 0:
+            sentiment = "negative"
+        else:
+            sentiment = "neutral"
+        print("Sentiment Analysis:")
+        print(f"Text: {text}")
+        print(f"Sentiment: {sentiment}")
+        print(f"Sentiment Score: {sentiment_score:.2f}")
 
-        # final_comment is a list of strings!
-        result = detailed_analysis(final_comment)
+        result = detailed_analysis2(sentiment_score)
         print(result)
         return render(request, 'realworld/sentiment_graph.html', {'sentiment': result})
     else:
