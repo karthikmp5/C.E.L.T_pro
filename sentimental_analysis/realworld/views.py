@@ -178,9 +178,9 @@ def tweetanalysis(request):
     note = "Enter the Text to be analysed!"
     return render(request, 'realworld/tweetanalysis.html', {'note': note})
 
-def imageanalysis(request):
+def videoanalysis(request):
     note = "HEY"
-    return render(request, 'realworld/imageanalysis.html', {'note': note})
+    return render(request, 'realworld/videoanalysis.html', {'note': note})
 
 def audioanalysis(request):
     if request.method == 'POST':
