@@ -89,7 +89,7 @@
 
 
 <h1 style="margin: auto; text-align: center; font-family: Ranchers;">{{ note }}</h1>
-<form action = "{% url "video analysis" %}" method = "post" enctype="multipart/form-data">
+<form action = "{% url "image analysis" %}" method = "post" enctype="multipart/form-data">
         {% csrf_token %}
     <label for = "Text"></label>
     <div class="container" style="width: 100%;">
