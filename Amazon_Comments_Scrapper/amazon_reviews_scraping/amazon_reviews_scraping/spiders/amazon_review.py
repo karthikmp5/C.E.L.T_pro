@@ -3,7 +3,10 @@
 # Importing Scrapy Library
 import os
 import scrapy
+import subprocess
 
+result = subprocess.check_output(['git', 'rev-parse', '--show-toplevel'])
+base_directory = result.decode('utf-8').strip()
 
 # Creating a new class to implement Spide
 class AmazonReviewsSpider(scrapy.Spider):
@@ -13,10 +16,11 @@ class AmazonReviewsSpider(scrapy.Spider):
     # Domain names to scrape
     allowed_domains = ['amazon.com']
 
-    os.system("rm /Users/sj941/Documents/GitHub/SE_Project1/sentimental_analysis/reviews.json")
-    my_file_handle = open('/Users/sj941/Documents/GitHub/SE_Project1/Amazon_Comments_Scrapper/amazon_reviews_scraping/amazon_reviews_scraping/spiders/ProductAnalysis.txt')
-    myBaseUrl = my_file_handle.read()
-    # myBaseUrl = "https://www.amazon.in/Apple-MacBook-Air-13-3-inch-MQD32HN/product-reviews/B073Q5R6VR/ref=cm_cr_dp_d_show_all_btm?ie=UTF8&amp;amp;reviewerType=all_reviews&amp;amp;pageNumber="
+    os.system(f'rm os.path.join(base_directory, "sentimental_analysis\reviews.json")')
+    my_file_handle = open('os.path.join(base_directory, "Amazon_Comments_Scrapper\amazon_reviews_scraping\amazon_reviews_scraping\spiders\ProductAnalysis.txt")')
+
+    #myBaseUrl = my_file_handle.read()
+    myBaseUrl = "https://www.amazon.in/Apple-MacBook-Air-13-3-inch-MQD32HN/product-reviews/B073Q5R6VR/ref=cm_cr_dp_d_show_all_btm?ie=UTF8&amp;amp;reviewerType=all_reviews&amp;amp;pageNumber="
     start_urls = []
 
     # Creating list of urls to be scraped by appending page number a the end of base url
