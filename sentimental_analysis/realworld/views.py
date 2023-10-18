@@ -9,9 +9,14 @@ from pdfminer.layout import LAParams
 from io import StringIO
 from .utilityFunctions import *
 import os
+import subprocess
 import json
 import speech_recognition as sr
 from vaderSentiment.vaderSentiment import SentimentIntensityAnalyzer
+
+# Determine the base directory(SE_Project1) of your project
+result = subprocess.check_output(['git', 'rev-parse', '--show-toplevel'])
+base_directory = result.decode('utf-8').strip()
 
 def pdfparser(data):
 
@@ -123,7 +128,7 @@ def input(request):
                 value = text.split('.')
                 result = detailed_analysis(value)
         # Sentiment Analysis
-        os.system('cd /Users/sj941/Documents/GitHub/SE_Project1/sentimental_analysis/media/ && rm -rf *')
+        os.system(f'cd {os.path.join(base_directory, "sentimental_analysis/media/")} && rm -rf *')
         return render(request, 'realworld/sentiment_graph.html', {'sentiment': result})
     else:
         note = "Please Enter the Document you want to analyze"
@@ -132,15 +137,15 @@ def input(request):
 def productanalysis(request):
     if request.method == 'POST':
         blogname = request.POST.get("blogname", "")
-        text_file = open(
-            "/Users/sj941/Documents/GitHub/SE_Project1/Amazon_Comments_Scrapper/amazon_reviews_scraping/amazon_reviews_scraping/spiders/ProductAnalysis.txt",
-            "w")
-        text_file.write(blogname)
-        text_file.close()
+        # text_file = open(
+        #     "D:/All Documents/Documents/2. Pro documents/Nokia final/Documents/MS/5. Universities/1. Done/NCSU/SE/project/SE_Project1/Amazon_Comments_Scrapper/amazon_reviews_scraping/amazon_reviews_scraping/spiders/ProductAnalysis.txt",
+        #     "w")
+        # text_file.write(blogname)
+        # text_file.close()
         os.system(
-            'scrapy runspider /Users/sj941/Documents/GitHub/SE_Project1/Amazon_Comments_Scrapper/amazon_reviews_scraping/amazon_reviews_scraping/spiders/amazon_review.py -o reviews.json')
-        final_comment = []
-        with open('/Users/sj941/Documents/GitHub/SE_Project1/sentimental_analysis/reviews.json') as json_file:
+            f'scrapy runspider {os.path.join(base_directory, "Amazon_Comments_Scrapper/amazon_reviews_scraping/amazon_reviews_scraping/spiders/amazon_review.py")} -o reviews.json')
+        final_comment = []        
+        with open(os.path.join(base_directory, "sentimental_analysis/reviews.json")) as json_file:
             data = json.load(json_file)
             for p in range(1, len(data) - 1):
                 a = data[p]['comment']
@@ -186,7 +191,7 @@ def audioanalysis(request):
         print("Result")
         print(result)
         # Sentiment Analysis
-        os.system('cd /Users/sj941/Documents/GitHub/SE_Project1/sentimental_analysis/media/ && rm -rf *')
+        os.system(f'cd {os.path.join(base_directory, "sentimental_analysis/media/")} && rm -rf *')
         return render(request, 'realworld/sentiment_graph.html', {'sentiment': result})
     else:
         note = "Please Enter the audio file you want to analyze"

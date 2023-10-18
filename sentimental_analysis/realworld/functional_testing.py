@@ -8,6 +8,10 @@ from utilityFunctions import *
 import os
 import json
 import speech_recognition as sr
+import subprocess
+
+result = subprocess.check_output(['git', 'rev-parse', '--show-toplevel'])
+base_directory = result.decode('utf-8').strip()
 
 
 def pdfparser(data):
@@ -110,9 +114,9 @@ def input(pathname):
 
 
 def productanalysis():
-        os.system('scrapy runspider /Users/sj941/Documents/GitHub/SE_Project1/sentimental_analysis/realworld/amazon_test.py -o ~/build/bsharathramesh/SE_Project1/sentimental_analysis/realworld/reviews.json')
+        os.system(f'scrapy runspider {os.path.join(base_directory, "sentimental_analysis/realworld/amazon_test.py")} -o {os.path.join(base_directory, "sentimental_analysis/realworld/reviews.json")}')
         final_comment = []
-        with open('/Users/sj941/Documents/GitHub/SE_Project1/sentimental_analysis/realworld/reviews.json') as json_file:
+        with open(os.path.join(base_directory, "sentimental_analysis/realworld/reviews.json")) as json_file:
             data = json.load(json_file)
             for p in range(1, len(data) - 1):
                 a = data[p]['comment']
@@ -144,7 +148,7 @@ if __name__ == "__main__":
 
     if test2_output==expected2_output:
         count+=1
-    test3_output = input("/Users/sj941/Documents/GitHub/SE_Project1/sentimental_analysis/media/Nischal_Badarinath_Kashyap.pdf")
+    test3_output = input("D:/All Documents/Documents/2. Pro documents/Nokia final/Documents/MS/5. Universities/1. Done/NCSU/SE/project/SE_Project1/sentimental_analysis/media/Nischal_Badarinath_Kashyap.pdf")
     expected_output3 = {'pos': 0.06351351351351352, 'neu': 0.9209189189189189, 'neg': 0.015567567567567572}
 
     if expected_output3==test3_output:
