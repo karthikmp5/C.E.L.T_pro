@@ -1,6 +1,9 @@
 from django.shortcuts import render
 from django.core.files.storage import FileSystemStorage
 import sys
+import requests
+from bs4 import BeautifulSoup
+from textblob import TextBlob
 from pdfminer.pdfinterp import PDFResourceManager, PDFPageInterpreter
 from pdfminer.pdfpage import PDFPage
 from django.template.defaulttags import register
@@ -56,6 +59,10 @@ def get_clean_text(text):
     text = stripExtraWhiteSpaces(text)
 
     #Tokenize using nltk
+    try:
+        nltk.data.find('corpora/stopwords.zip')
+    except LookupError:
+        nltk.download('stopwords')
     tokens = nltk.word_tokenize(text)
 
     #Import stopwords
@@ -95,6 +102,27 @@ def detailed_analysis(result):
 
     return result_dict
 
+def detailed_analysis2(sentiment_score):
+    result_dict = {}
+    neg_count = 0
+    pos_count = 0
+    neu_count = 0
+    if sentiment_score>0:
+        result_dict['pos'] = 100*sentiment_score
+        result_dict['neu'] = 100-(100*sentiment_score)
+        result_dict['neg'] = 0
+    elif sentiment_score<0:
+        result_dict['pos'] = 0
+        result_dict['neu'] = 100-(100*abs(sentiment_score))
+        result_dict['neg'] = 100 * abs(sentiment_score)
+    elif sentiment_score==0:
+        result_dict['pos'] = 0
+        result_dict['neu'] = 100
+        result_dict['neg'] = 0
+
+    return result_dict
+
+
 def input(request):
     if request.method=='POST':
         file = request.FILES['document']
@@ -128,6 +156,7 @@ def input(request):
                 value = text.split('.')
                 result = detailed_analysis(value)
         # Sentiment Analysis
+
         os.system(f'cd {os.path.join(base_directory, "sentimental_analysis/media/")} && rm -rf *')
         return render(request, 'realworld/sentiment_graph.html', {'sentiment': result})
     else:
@@ -137,6 +166,7 @@ def input(request):
 def productanalysis(request):
     if request.method == 'POST':
         blogname = request.POST.get("blogname", "")
+
         # text_file = open(
         #     "D:/All Documents/Documents/2. Pro documents/Nokia final/Documents/MS/5. Universities/1. Done/NCSU/SE/project/SE_Project1/Amazon_Comments_Scrapper/amazon_reviews_scraping/amazon_reviews_scraping/spiders/ProductAnalysis.txt",
         #     "w")
@@ -164,16 +194,56 @@ def productanalysis(request):
 
 def textanalysis(request):
     if request.method == 'POST':
-        text_data = request.POST.get("Text", "")
-        final_comment = text_data.split('.')
+        text = request.POST.get("Text", "")
+        blob = TextBlob(text)
+        sentiment_score = blob.sentiment.polarity
+        if sentiment_score > 0:
+            sentiment = "positive"
+        elif sentiment_score < 0:
+            sentiment = "negative"
+        else:
+            sentiment = "neutral"
+        print("Sentiment Analysis:")
+        print(f"Text: {text}")
+        print(f"Sentiment: {sentiment}")
+        print(f"Sentiment Score: {sentiment_score:.2f}")
 
-        # final_comment is a list of strings!
-        result = detailed_analysis(final_comment)
+        result = detailed_analysis2(sentiment_score)
         print(result)
         return render(request, 'realworld/sentiment_graph.html', {'sentiment': result})
     else:
         note = "Enter the Text to be analysed!"
         return render(request, 'realworld/textanalysis.html', {'note': note})
+
+def tweetanalysis(request):
+    if request.method == 'POST':
+        tweetlink = request.POST.get("tweetlink", "")
+        response = requests.get(tweetlink)
+        if response.status_code == 200:
+            soup = BeautifulSoup(response.text, 'html.parser')
+            webpage_text = ' '.join([p.get_text() for p in soup.find_all('p')])
+            blob = TextBlob(webpage_text)
+            sentiment_score = blob.sentiment.polarity
+            if sentiment_score > 0:
+                sentiment = "positive"
+            elif sentiment_score < 0:
+                sentiment = "negative"
+            else:
+                sentiment = "neutral"
+        print("Webpage Analysis:")
+        result = detailed_analysis2(sentiment_score)
+        print(result)
+        return render(request, 'realworld/sentiment_graph.html', {'sentiment': result})
+    else:
+        note = "Enter the Link to be analysed!"
+        return render(request, 'realworld/tweetanalysis.html', {'note': note})
+
+
+
+def imageanalysis(request):
+    note = "HEY"
+    return render(request, 'realworld/imageanalysis.html', {'note': note})
+
 
 def audioanalysis(request):
     if request.method == 'POST':
