@@ -88,18 +88,22 @@
 
 
 
-<h1 style="margin: auto; text-align: center; font-family: Ranchers;">{{ note }}</h1>
+<h1 style="padding-top: 20px; padding-bottom: 20px; margin: auto; text-align: center; font-family: Ranchers;">{{ note }}</h1>
+<div style="text-align: center">
 <form action = "{% url "text analysis" %}" method = "post" enctype="multipart/form-data">
         {% csrf_token %}
     <label for = "Text"></label>
     <div class="container" style="width: 100%;">
-    <textarea class="form-control form-control-lg" type="textarea" name="Text" rows = "10" cols="50" >
+    <textarea id ="myTextarea" class="form-control form-control-lg" type="textarea" name="Text" rows = "10" cols="50" style="width: 300px; height: 150px; font-size: 16px; border: 1px solid #ccc; border-radius: 5px;" >
     </textarea>
     <br>
     <br>
-    <button class="btn btn-primary btn-lg" style="display: flex; align-items: center; justify-content: center;" type ="submit">Submit</button>
+    <button style="background-color: #007bff; color: #ffffff; border: none; padding: 10px 10px; font-size: 1rem; cursor: pointer; border-radius: 5px;" type="reset" value="reset">Clear Text</button>
+    <button class="btn btn-primary btn-lg" style="background-color: #007bff; color: #ffffff; border: none; padding: 10px 10px; font-size: 1rem; cursor: pointer; border-radius: 5px;" type ="submit" value="Submit">Submit</button>
+    <br/> <br/>
     </div>
 </form>
+</div>
 
 </body>
 </html>

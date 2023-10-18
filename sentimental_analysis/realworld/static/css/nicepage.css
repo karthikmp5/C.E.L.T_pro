@@ -3731,11 +3731,6 @@ button,
 input,
 optgroup,
 select,
-textarea {
-  color: inherit;
-  font: inherit;
-  margin: 0;
-}
 optgroup {
   font-weight: 700;
 }
@@ -3779,9 +3774,7 @@ legend {
   padding: 0;
   white-space: normal;
 }
-textarea {
-  overflow: auto;
-}
+
 [type="checkbox"],
 [type="radio"] {
   box-sizing: border-box;
@@ -30734,3 +30727,76 @@ a.u-link.u-text-hover-grey-90:hover {
  /*begin-variables base-font-size*/ 
  html { font-size: 16px; }
  /*end-variables base-font-size*/
+
+ /* Apply these styles to all textareas */
+textarea {
+  width: 100%; /* Full width */
+  max-width: 100%; /* Ensure it doesn't exceed the parent's width */
+  padding: 10px; /* Padding inside the textarea */
+  font-size: 16px; /* Font size */
+  border: 1px solid #ccc; /* Border with a light gray color */
+  border-radius: 5px; /* Rounded corners */
+  resize: vertical; /* Allow vertical resizing of the textarea */
+  box-sizing: border-box; /* Include padding and border in the width */
+}
+
+/* Styles for when the textarea is focused (clicked into) */
+textarea:focus {
+  border: 2px solid #007bff; /* Change border color when focused */
+  outline: none; /* Remove the default blue outline */
+  box-shadow: 0 0 5px #007bff; /* Add a shadow when focused */
+}
+
+/* Additional styles for disabled textareas */
+textarea:disabled {
+  background-color: #f1f1f1; /* Gray background for disabled textarea */
+  cursor: not-allowed; /* Change cursor to 'not-allowed' */
+}
+
+/* Placeholder text (text that appears inside the textarea when empty) */
+textarea::placeholder {
+  color: #999; /* Placeholder text color */
+}
+
+/* Button Style */
+.upload-btn-wrapper {
+  position: relative;
+  overflow: hidden;
+  display: inline-block;
+}
+
+.btn {
+  border: 2px solid gray;
+  color: gray;
+  background-color: white;
+  padding: 8px 20px;
+  border-radius: 8px;
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.upload-btn-wrapper input[type=file] {
+  font-size: 100px;
+  position: absolute;
+  left: 0;
+  top: 0;
+  opacity: 0;
+}
+
+/* Hover Effect */
+.upload-btn-wrapper:hover .btn {
+  background-color: #f1f1f1;
+  border-color: #ccc;
+}
+
+/* Focus Effect */
+.upload-btn-wrapper input[type=file]:focus + .btn {
+  outline: 1px dotted #000;
+  outline: -webkit-focus-ring-color auto 5px;
+}
+
+/* Active Effect */
+.upload-btn-wrapper input[type=file]:active + .btn {
+  background-color: #ccc;
+  border-color: #888;
+}
