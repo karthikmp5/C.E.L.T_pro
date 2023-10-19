@@ -17,9 +17,28 @@
 
 ## INTRODUCTION
 
-Sentiment analysis is one of the fastest growing research areas in computer science, making it challenging to keep track of all the activities in the area. In our project we aim to achieve our goal in accurately predicting a users sentiment by analysing the data provided in any of the four different methods. They are Document Analysis, Text Analysis, Product Analysis and Audio Analysis. This project though currently in the initial stages of development, can be further applied to numerous domains which can be useful for the society. This document provides a major perspective for the users to understand and take up the project as an Open source software and add on multiple features before releasing to the market. Also, the document aids the developers in understanding the code and acts as a reference point for starting the project.
+Sentiment analysis is one of the fastest growing research areas in computer science, making it challenging to keep track of all the activities in the area. In our project we aim to achieve our goal in accurately predicting a users sentiment by analysing the data provided in any of the four different methods. They are Document Analysis, Text Analysis, Product Analysis, Tweet Analysis, Image Analysis and Audio Analysis. This document provides a major perspective for the users to understand and take up the project as an Open source software and add on multiple features before releasing to the market. Also, the document aids the developers in understanding the code and acts as a reference point for starting the project.
 
-## How is C.E.L.T Pro different from C.E.L.T?
+## PROJECT FLOW
+1. The landing page on our website provides comprehensive information on various types of analyses, each with its respective link.
+2. Once you have identified the specific type of analysis relevant to your needs, you will be directed to a form that accepts input for sentiment analysis.
+3. The algorithm performs the analysis once you have provided the input and initiated the analysis. The results are presented in a variety of visual formats, including pie charts and bar graphs.
+4. The output is segmented into three distinct categories, namely positive, neutral, and negative sentiments, each represented as a percentage.<br>
+You can have a quick glance at some of our features through the gif below. <br>
+We invite you to explore our comprehensive feature list by watching the detailed YouTube video we have provided. <br>
+![](project_flow.gif)
+
+## CORE FEATURES
+Here are our core features:
+1. Text analysis (with enhanced accuracy in the latest version)
+2. Document analysis
+3. Tweet analysis (new feature)
+4. Image analysis(new feature)
+5. Audio analysis
+6. Product review analysis
+All of the above, now presented in a more user-friendly interface
+
+## How is C.E.L.T Pro different from C.E.L.T? Read all about our feature additions and enhancements!
 C.E.L.T Pro has undergone significant improvements that elevate this version to a higher level. Our team has meticulously designed and integrated a multitude of new features, both major and minor, to ensure that users of C.E.L.T Pro are provided with superior performance and functionality.<br>
 # Major Enhancements<br>
 1. Improved accuracy of text analysis: One of the critical changes we implemented was to improve the efficiency of the existing Text Analysis. As of our team started to analyze the features offered by the project, we noticed that the sentiment being analyzed from the input text that was provided had very low accuracy. Since Text Analysis one of the major features, there was a potential need to enhance its accuracy. We decided that the priority of this story would be high and enhanced the algorithm which is now being used by the project to give accurate sentiment of the input text. For instance, the previous version of C.E.L.T. had a tendency to misclassify certain text inputs, such as the phrase "not good," as positive. However, our current version of the software has been significantly improved in terms of accuracy and is now capable of addressing these and similar issues. 
@@ -73,6 +92,10 @@ Annadurai,Harshitha <br>
 Bhoja Ramamanohara,Pannaga Rao <br>
 Masineni Prasanna Kumar,Karthik <br>
 Niranjana,Prathima Putreddy <br>
+
+## Support
+Facing issues with the application? Mail us - [teamsoftwareeng7@gmail.com](teamsoftwareeng7@gmail.com)
+
 
 				
 
