@@ -235,7 +235,7 @@ def textanalysis(request):
         result = detailed_analysis3(positive_score, neutral_score, negative_score)
         return render(request, 'realworld/sentiment_graph.html', {'sentiment': result})
     else:
-        note = "Enter the Text to be analyzed!"
+        note = "Enter the text to be analyzed!"
         return render(request, 'realworld/textanalysis.html', {'note': note})
 
 
