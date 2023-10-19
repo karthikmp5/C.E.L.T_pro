@@ -16,6 +16,9 @@ import subprocess
 import json
 import speech_recognition as sr
 from vaderSentiment.vaderSentiment import SentimentIntensityAnalyzer
+import torch
+from transformers import CLIPProcessor, CLIPModel
+from PIL import Image
 
 # Determine the base directory(SE_Project1) of your project
 result = subprocess.check_output(['git', 'rev-parse', '--show-toplevel'])
@@ -120,6 +123,13 @@ def detailed_analysis2(sentiment_score):
         result_dict['neu'] = 100
         result_dict['neg'] = 0
 
+    return result_dict
+
+def detailed_analysis3(pos,neu,neg):
+    result_dict = {}
+    result_dict['pos']=pos
+    result_dict['neu']=neu
+    result_dict['neg']=neg
     return result_dict
 
 
@@ -241,8 +251,38 @@ def tweetanalysis(request):
 
 
 def imageanalysis(request):
-    note = "HEY"
-    return render(request, 'realworld/imageanalysis.html', {'note': note})
+    note = "Please add the image to be analysed"
+    if request.method == 'POST':
+        imgfile = request.FILES['imgfile']
+        device = "cuda" if torch.cuda.is_available() else "cpu"
+        model = CLIPModel.from_pretrained("openai/clip-vit-base-patch16")
+        processor = CLIPProcessor.from_pretrained("openai/clip-vit-base-patch16")
+        image = Image.open(imgfile)
+        text = ["a happy image", "a sad image", "a joyful image"]
+        inputs = processor(text, images=image, return_tensors="pt", padding=True)
+        inputs = {k: v.to(device) for k, v in inputs.items()}
+        with torch.no_grad():
+            image_features = model.get_image_features(pixel_values=inputs['pixel_values'])
+            text_features = model.get_text_features(input_ids=inputs['input_ids'])
+        similarity_scores = (image_features @ text_features.T).squeeze(0)
+        positive_score = similarity_scores[0].item()
+        negative_score = similarity_scores[1].item()
+        neutral_score = similarity_scores[2].item()
+        if positive_score > negative_score and positive_score > neutral_score:
+            sentiment = "Positive"
+        elif negative_score > positive_score and negative_score > neutral_score:
+            sentiment = "Negative"
+        else:
+            sentiment = "Neutral"
+        print(f"Sentiment: {sentiment}")
+        print(f"Positive Score: {positive_score}")
+        print(f"Negative Score: {negative_score}")
+        print(f"Neutral Score: {neutral_score}")
+        result = detailed_analysis3(positive_score,neutral_score, negative_score)
+        return render(request, 'realworld/sentiment_graph.html', {'sentiment': result})
+    else:
+        note = "Enter the Text to be analysed!"
+        return render(request, 'realworld/imageanalysis.html', {'note': note})
 
 
 def audioanalysis(request):
