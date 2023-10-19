@@ -170,7 +170,7 @@ def input(request):
         os.system(f'cd {os.path.join(base_directory, "sentimental_analysis/media/")} && rm -rf *')
         return render(request, 'realworld/sentiment_graph.html', {'sentiment': result})
     else:
-        note = "Please Enter the Document you want to analyze"
+        note = "Please insert the document you want to analyze"
         return render(request, 'realworld/home.html', {'note': note})
 
 def productanalysis(request):
@@ -197,7 +197,7 @@ def productanalysis(request):
         return render(request, 'realworld/sentiment_graph.html', {'sentiment': result})
 
     else:
-        note = "Please Enter the product blog link for analysis"
+        note = "Please enter the product blog link for analysis"
         return render(request, 'realworld/productanalysis.html', {'note': note})
 
 # Custom template filter to retrieve a dictionary value by key.
@@ -259,7 +259,7 @@ def tweetanalysis(request):
         print(result)
         return render(request, 'realworld/sentiment_graph.html', {'sentiment': result})
     else:
-        note = "Enter the Link to be analysed!"
+        note = "Enter the tweet url to be analysed!"
         return render(request, 'realworld/tweetanalysis.html', {'note': note})
 
 
@@ -295,7 +295,7 @@ def imageanalysis(request):
         result = detailed_analysis3(positive_score,neutral_score, negative_score)
         return render(request, 'realworld/sentiment_graph.html', {'sentiment': result})
     else:
-        note = "Enter the Text to be analysed!"
+        note = "Insert the image to be analysed!"
         return render(request, 'realworld/imageanalysis.html', {'note': note})
 
 
@@ -318,7 +318,7 @@ def audioanalysis(request):
         os.system(f'cd {os.path.join(base_directory, "sentimental_analysis/media/")} && rm -rf *')
         return render(request, 'realworld/sentiment_graph.html', {'sentiment': result})
     else:
-        note = "Please Enter the audio file you want to analyze"
+        note = "Please enter the audio file you want to analyze"
         return render(request, 'realworld/audio.html', {'note': note})
 
 def speech_to_text(filename):
