@@ -202,28 +202,42 @@ def productanalysis(request):
 
 # Custom template filter to retrieve a dictionary value by key.
 
+
 def textanalysis(request):
     if request.method == 'POST':
         text = request.POST.get("Text", "")
         blob = TextBlob(text)
-        sentiment_score = blob.sentiment.polarity
-        if sentiment_score > 0:
-            sentiment = "positive"
-        elif sentiment_score < 0:
-            sentiment = "negative"
-        else:
-            sentiment = "neutral"
-        print("Sentiment Analysis:")
-        print(f"Text: {text}")
-        print(f"Sentiment: {sentiment}")
-        print(f"Sentiment Score: {sentiment_score:.2f}")
 
-        result = detailed_analysis2(sentiment_score)
-        print(result)
+        # Split the text into sentences
+        sentences = blob.sentences
+        results=[]
+        positive_score=0
+        negative_score=0
+        neutral_score=0
+
+        for sentence in sentences:
+            sentiment_polarity = sentence.sentiment.polarity
+
+            # Determine sentiment based on polarity
+            if sentiment_polarity > 0:
+                sentiment = "positive"
+            elif sentiment_polarity < 0:
+                sentiment = "negative"
+            else:
+                sentiment = "neutral"
+
+            # Calculate separate positive, negative, and neutral scores
+            positive_score += max(0, sentiment_polarity)
+            negative_score += max(0, -sentiment_polarity)
+            neutral_score += (1 - positive_score - negative_score)
+
+        # You can return or use the 'results' list as needed
+        result = detailed_analysis3(positive_score, neutral_score, negative_score)
         return render(request, 'realworld/sentiment_graph.html', {'sentiment': result})
     else:
-        note = "Enter the Text to be analysed!"
+        note = "Enter the Text to be analyzed!"
         return render(request, 'realworld/textanalysis.html', {'note': note})
+
 
 def tweetanalysis(request):
     if request.method == 'POST':
