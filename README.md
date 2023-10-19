@@ -1,6 +1,8 @@
-# SE Project 1
+# SE Project 2
 
-# C.E.L.T: The Sentimental Analyser 
+# C.E.L.T: The Sentimental Analyser is now ## C.E.L.T Pro 
+
+![](celt.gif)
 
 ### YouTube Link: 
 
