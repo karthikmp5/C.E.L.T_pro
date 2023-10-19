@@ -43,3 +43,8 @@ urllib3==1.25.10
 vaderSentiment==3.3.2
 w3lib==1.22.0
 zope.interface==5.1.0
+bs4>=0.0.1
+textblob>=0.17.1
+torch>=2.1.0
+transformers>=4.34.1
+Pillow>=9.3.0
