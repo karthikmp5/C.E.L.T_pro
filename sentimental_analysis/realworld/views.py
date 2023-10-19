@@ -16,6 +16,9 @@ import subprocess
 import json
 import speech_recognition as sr
 from vaderSentiment.vaderSentiment import SentimentIntensityAnalyzer
+import torch
+from transformers import CLIPProcessor, CLIPModel
+from PIL import Image
 
 # Determine the base directory(SE_Project1) of your project
 result = subprocess.check_output(['git', 'rev-parse', '--show-toplevel'])
@@ -122,6 +125,13 @@ def detailed_analysis2(sentiment_score):
 
     return result_dict
 
+def detailed_analysis3(pos,neu,neg):
+    result_dict = {}
+    result_dict['pos']=pos
+    result_dict['neu']=neu
+    result_dict['neg']=neg
+    return result_dict
+
 
 def input(request):
     if request.method=='POST':
@@ -160,7 +170,7 @@ def input(request):
         os.system(f'cd {os.path.join(base_directory, "sentimental_analysis/media/")} && rm -rf *')
         return render(request, 'realworld/sentiment_graph.html', {'sentiment': result})
     else:
-        note = "Please Enter the Document you want to analyze"
+        note = "Please insert the document you want to analyze"
         return render(request, 'realworld/home.html', {'note': note})
 
 def productanalysis(request):
@@ -187,33 +197,47 @@ def productanalysis(request):
         return render(request, 'realworld/sentiment_graph.html', {'sentiment': result})
 
     else:
-        note = "Please Enter the product blog link for analysis"
+        note = "Please enter the product blog link for analysis"
         return render(request, 'realworld/productanalysis.html', {'note': note})
 
 # Custom template filter to retrieve a dictionary value by key.
+
 
 def textanalysis(request):
     if request.method == 'POST':
         text = request.POST.get("Text", "")
         blob = TextBlob(text)
-        sentiment_score = blob.sentiment.polarity
-        if sentiment_score > 0:
-            sentiment = "positive"
-        elif sentiment_score < 0:
-            sentiment = "negative"
-        else:
-            sentiment = "neutral"
-        print("Sentiment Analysis:")
-        print(f"Text: {text}")
-        print(f"Sentiment: {sentiment}")
-        print(f"Sentiment Score: {sentiment_score:.2f}")
 
-        result = detailed_analysis2(sentiment_score)
-        print(result)
+        # Split the text into sentences
+        sentences = blob.sentences
+        results=[]
+        positive_score=0
+        negative_score=0
+        neutral_score=0
+
+        for sentence in sentences:
+            sentiment_polarity = sentence.sentiment.polarity
+
+            # Determine sentiment based on polarity
+            if sentiment_polarity > 0:
+                sentiment = "positive"
+            elif sentiment_polarity < 0:
+                sentiment = "negative"
+            else:
+                sentiment = "neutral"
+
+            # Calculate separate positive, negative, and neutral scores
+            positive_score += max(0, sentiment_polarity)
+            negative_score += max(0, -sentiment_polarity)
+            neutral_score += (1 - positive_score - negative_score)
+
+        # You can return or use the 'results' list as needed
+        result = detailed_analysis3(positive_score, neutral_score, negative_score)
         return render(request, 'realworld/sentiment_graph.html', {'sentiment': result})
     else:
-        note = "Enter the Text to be analysed!"
+        note = "Enter the text to be analyzed!"
         return render(request, 'realworld/textanalysis.html', {'note': note})
+
 
 def tweetanalysis(request):
     if request.method == 'POST':
@@ -235,14 +259,44 @@ def tweetanalysis(request):
         print(result)
         return render(request, 'realworld/sentiment_graph.html', {'sentiment': result})
     else:
-        note = "Enter the Link to be analysed!"
+        note = "Enter the tweet url to be analysed!"
         return render(request, 'realworld/tweetanalysis.html', {'note': note})
 
 
 
 def imageanalysis(request):
-    note = "HEY"
-    return render(request, 'realworld/imageanalysis.html', {'note': note})
+    note = "Please add the image to be analysed"
+    if request.method == 'POST':
+        imgfile = request.FILES['imgfile']
+        device = "cuda" if torch.cuda.is_available() else "cpu"
+        model = CLIPModel.from_pretrained("openai/clip-vit-base-patch16")
+        processor = CLIPProcessor.from_pretrained("openai/clip-vit-base-patch16")
+        image = Image.open(imgfile)
+        text = ["a happy image", "a sad image", "a joyful image"]
+        inputs = processor(text, images=image, return_tensors="pt", padding=True)
+        inputs = {k: v.to(device) for k, v in inputs.items()}
+        with torch.no_grad():
+            image_features = model.get_image_features(pixel_values=inputs['pixel_values'])
+            text_features = model.get_text_features(input_ids=inputs['input_ids'])
+        similarity_scores = (image_features @ text_features.T).squeeze(0)
+        positive_score = similarity_scores[0].item()
+        negative_score = similarity_scores[1].item()
+        neutral_score = similarity_scores[2].item()
+        if positive_score > negative_score and positive_score > neutral_score:
+            sentiment = "Positive"
+        elif negative_score > positive_score and negative_score > neutral_score:
+            sentiment = "Negative"
+        else:
+            sentiment = "Neutral"
+        print(f"Sentiment: {sentiment}")
+        print(f"Positive Score: {positive_score}")
+        print(f"Negative Score: {negative_score}")
+        print(f"Neutral Score: {neutral_score}")
+        result = detailed_analysis3(positive_score,neutral_score, negative_score)
+        return render(request, 'realworld/sentiment_graph.html', {'sentiment': result})
+    else:
+        note = "Insert the image to be analysed!"
+        return render(request, 'realworld/imageanalysis.html', {'note': note})
 
 
 def audioanalysis(request):
@@ -264,7 +318,7 @@ def audioanalysis(request):
         os.system(f'cd {os.path.join(base_directory, "sentimental_analysis/media/")} && rm -rf *')
         return render(request, 'realworld/sentiment_graph.html', {'sentiment': result})
     else:
-        note = "Please Enter the audio file you want to analyze"
+        note = "Please enter the audio file you want to analyze"
         return render(request, 'realworld/audio.html', {'note': note})
 
 def speech_to_text(filename):
