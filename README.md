@@ -37,12 +37,12 @@ We invite you to explore our comprehensive feature list by watching the detailed
 
 ## CORE FEATURES
 Here are our core features:
-1. Text analysis (with enhanced accuracy in the latest version)
-2. Document analysis
-3. Tweet analysis (new feature)
-4. Image analysis(new feature)
-5. Audio analysis
-6. Product review analysis
+1. Text analysis (with enhanced accuracy in the latest version): Text analysis module accepts text string as input, analyses it using TextBlob and presents the output as positive sentiment percentage, negative sentiment percentage and neutral sentiment percentage.
+2. Document analysis: Document analysis module accepts a PDF document as input, analyses it and presents the output as positive sentiment percentage, negative sentiment percentage and neutral sentiment percentage.
+3. Tweet analysis (new feature): Tweet analysis accepts the link to a tweet as input, analyses it using TextBlob and BeautifulSoup and presents the output as as graph which displays positive sentiment percentage, negative sentiment percentage and neutral sentiment percentage.
+4. Image analysis(new feature): Image analysis accepts a jpeg/jpg/png format images as input, analyses it using OpenAI, CLIP and torch, and presents the output as as graph which displays positive sentiment percentage, negative sentiment percentage and neutral sentiment percentage.
+5. Audio analysis: Audio analysis accepts a wave (.wav) format audio file as input, analyses it using speech recognition and SentimentIntensityAnalyzer and presents the output as as graph which displays positive sentiment percentage, negative sentiment percentage and neutral sentiment percentage.
+6. Product review analysis: This module accepts a product review link as input, analyses it using scrapy and presents the output as as graph which displays positive sentiment percentage, negative sentiment percentage and neutral sentiment percentage.
 All of the above, now presented in a more user-friendly interface
 
 ## How is C.E.L.T Pro different from C.E.L.T? Read all about our feature additions and enhancements!
