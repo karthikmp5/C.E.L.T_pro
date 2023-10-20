@@ -11,3 +11,5 @@ Niranjana,Prathima Putreddy <br>
 
 ### SCORE CARD
 [Go to project2 score card file](https://github.com/karthikmp5/C.E.L.T_pro/blob/master/proj2/score%20card.csv)
+
+Main README [Go to README](https://github.com/karthikmp5/C.E.L.T_pro/tree/master#readme) <br>
