@@ -14,6 +14,10 @@
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
+[![codecov](https://codecov.io/gh/usmanwardag/dollar_bot/branch/main/graph/badge.svg?token=PYAWX95R67)](https://codecov.io/gh/usmanwardag/dollar_bot)
+
+[![code style: prettier](https://img.shields.io/badge/code_style-prettier-ff69b4.svg?style=flat-square)](https://github.com/prettier/prettier)
+
 ![Open Issues](https://img.shields.io/github/issues-raw/karthikmp5/C.E.L.T_pro)
 
 ![Closed Issues](https://img.shields.io/github/issues-closed-raw/karthikmp5/C.E.L.T_pro)
