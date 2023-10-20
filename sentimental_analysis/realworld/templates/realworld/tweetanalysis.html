@@ -1,3 +1,6 @@
+<!-- The MIT License (MIT)
+
+Copyright (c) 2018 Łukasz Langa -->
 <!DOCTYPE html>
 <html style="font-size: 16px;">
 {% load static %}
@@ -88,21 +91,18 @@
 
 
 
-<h1 style="padding-top: 20px; padding-bottom: 20px;margin: auto; text-align: center; font-family: Ranchers;">{{ note }}</h1>
-<div style="text-align: center">
+<h1 style="margin: auto; text-align: center; font-family: Ranchers;">{{ note }}</h1>
 <form action = "{% url "tweet analysis" %}" method = "post" enctype="multipart/form-data">
         {% csrf_token %}
     <label for = "tweetlink"></label>
     <div class="container" style="width: 100%;">
-    <textarea class="form-control form-control-lg" type="text" name="tweetlink" rows = "2" cols="100" style="width: 300px; height: 150px; font-size: 16px; border: 1px solid #ccc; border-radius: 5px;">
+    <textarea class="form-control form-control-lg" type="text" name="tweetlink" rows = "10" cols="50" >
     </textarea>
     <br>
     <br>
-    <button style="background-color: #007bff; color: #ffffff; border: none; padding: 10px 10px; font-size: 1rem; cursor: pointer; border-radius: 5px;" type="reset" value="reset">Clear Text</button>
-    <button class="btn btn-primary btn-lg" style="background-color: #007bff; color: #ffffff; border: none; padding: 10px 10px; font-size: 1rem; cursor: pointer; border-radius: 5px;" type ="submit" value="Submit">Submit</button>
-    
+    <button class="btn btn-primary btn-lg" style="display: flex; align-items: center; justify-content: center;" type ="submit">Submit</button>
     </div>
 </form>
-</div>
+
 </body>
 </html>
