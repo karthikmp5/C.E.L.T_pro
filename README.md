@@ -6,8 +6,7 @@
 
 ## Watch how our application works: 
 
-[Youtube Video](https://youtu.be/VLoJCemCdHg) <br>
-[Detailed Video of our new features](https://youtu.be/VLoJCemCdHg)
+[Youtube Video](https://youtu.be/V_F8zJv_IIg) <br>
 
 [![DOI](https://zenodo.org/badge/295188611.svg)](https://zenodo.org/badge/latestdoi/295188611)
 
@@ -15,7 +14,15 @@
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
-## INTRODUCTION
+![Open Issues](https://img.shields.io/github/issues-raw/karthikmp5/C.E.L.T_pro)
+
+![Closed Issues](https://img.shields.io/github/issues-closed-raw/karthikmp5/C.E.L.T_pro)
+
+
+
+
+
+## What is C.E.L.T?
 
 Sentiment analysis is one of the fastest growing research areas in computer science, making it challenging to keep track of all the activities in the area. In our project we aim to achieve our goal in accurately predicting a users sentiment by analysing the data provided in any of the four different methods. They are Document Analysis, Text Analysis, Product Analysis, Tweet Analysis, Image Analysis and Audio Analysis. This document provides a major perspective for the users to understand and take up the project as an Open source software and add on multiple features before releasing to the market. Also, the document aids the developers in understanding the code and acts as a reference point for starting the project.
 
@@ -57,15 +64,16 @@ C.E.L.T Pro has undergone significant improvements that elevate this version to 
 [Read our detailed release notes](https://github.com/karthikmp5/C.E.L.T_pro/releases) <br>
 <br>
 
-The complete development was achieved using the following technologies:
-Python3
-Django
-HTML
-CSS
-Scrappy
-Vader Analysis Tool
-BeautifulSoup
-Textblob
+The complete development was achieved using the following technologies:<br>
+Python3 <br>
+Django<br>
+HTML<br>
+CSS<br>
+Scrappy<br>
+Vader Analysis Tool<br>
+BeautifulSoup<br>
+Textblob<br>
+Our requirements file has all packages that will be required. For details on all packages that were used, we invite you to read [Requirements](https://youtu.be/VLoJCemCdHg](https://github.com/karthikmp5/C.E.L.T_pro/blob/Documentation/Update_readme/requirements.txt)
 
 
 
