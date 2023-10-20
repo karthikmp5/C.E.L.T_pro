@@ -1,3 +1,7 @@
+# The MIT License (MIT)
+
+# Copyright (c) 2018 Łukasz Langa
+
 from django.shortcuts import render
 from django.core.files.storage import FileSystemStorage
 import sys
