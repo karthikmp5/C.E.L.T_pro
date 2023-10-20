@@ -1,3 +1,6 @@
+# MIT License
+
+# Copyright (c) 2020 Sharath Bangalore Ramesh Kumar
 from django.shortcuts import render
 from django.core.files.storage import FileSystemStorage
 import sys
