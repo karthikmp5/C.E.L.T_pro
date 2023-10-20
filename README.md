@@ -73,7 +73,7 @@ Scrappy<br>
 Vader Analysis Tool<br>
 BeautifulSoup<br>
 Textblob<br>
-Our requirements file has all packages that will be required. For details on all packages that were used, we invite you to read [Requirements](https://youtu.be/VLoJCemCdHg](https://github.com/karthikmp5/C.E.L.T_pro/blob/Documentation/Update_readme/requirements.txt)
+Our requirements file has all packages that will be required. For details on all packages that were used, we invite you to read [Requirements](requirements.txt)
 
 
 
@@ -82,6 +82,7 @@ Our requirements file has all packages that will be required. For details on all
 2. Execute manage.py using the command `python3 manage.py runserver` at `/SE_Project1/sentimental_analaysis`. This runs the Django server such that we can open the webUI for the project on the browser.
 3. Next, open your browser and type in `localhost:8000` in the search bar to open the webUI of the application.
 4. You are now fully equipped to analyze sentiment across various data types, including text, documents, reviews, audio, images, and tweets.
+5. If you face any issues while executing, refer this [VIDEO TUTORIAL](https://drive.google.com/file/d/17Bf7iwb8wPozZ53BUCVQEszitDcmSbSR/view?usp=share_link) to set the application up. We have also provided our group email address if you need more help towards the end of the file.
 
 
 ## FUTURE SCOPE
@@ -101,8 +102,12 @@ Bhoja Ramamanohara,Pannaga Rao <br>
 Masineni Prasanna Kumar,Karthik <br>
 Niranjana,Prathima Putreddy <br>
 
-## Support
-Facing issues with the application? Mail us - [teamsoftwareeng7@gmail.com](teamsoftwareeng7@gmail.com)
+## Troubleshooting and Support
+Common issues observed and solutions:<br>
+1. requirements.txt failing: this issue should no longer be seen, as we have used ~= to ensure your systems pick up versions compatible with the other packages. However, if you happen to see the issue, modify the requirements.txt file to use a more recent version.
+2. module manage.py not found: ensure you are inside the sentimental_analysis directory while attempting to run the module
+3. python was not found: we recommend using python3 as some of the modules are available only on Python3. You may either install Python3 or setup a virtual environment(we suggest the latter if you are currently running other applications on python2)
+Facing other issues with the application? Mail us - [teamsoftwareeng7@gmail.com](teamsoftwareeng7@gmail.com)
 
 
 				
