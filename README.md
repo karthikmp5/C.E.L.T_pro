@@ -22,6 +22,9 @@
 
 ![Closed Issues](https://img.shields.io/github/issues-closed-raw/karthikmp5/C.E.L.T_pro)
 
+![CI/CD](https://img.shields.io/badge/CI/CD-Passing-brightgreen)
+
+
 
 
 
