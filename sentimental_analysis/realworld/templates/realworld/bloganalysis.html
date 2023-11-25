@@ -82,11 +82,11 @@
     {% csrf_token %}
     <label for = "blog"></label>
     <div class="container" style="width: 100%;">
-    <textarea class="form-control form-control-lg" type="text" name="blog" rows = "2" cols="100" style="height: 150px; font-size: 16px; border: 1px solid #ccc; border-radius: 5px; top: 50%; left: 50%;">
+      <input class="form-control form-control-lg" id = "blogname" type="text" name="blog">
     </textarea>
     <br>
     <br>
-    <button class="btn btn-secondary" type="reset" value="reset">Clear Text</button>
+    <button class="btn btn-secondary" type="reset" value="reset">Clear URL</button>
     <button class="btn btn-success" type ="submit" value="Submit">Submit</button>
     
     </div>
