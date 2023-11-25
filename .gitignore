@@ -12,3 +12,4 @@ dist/
 *.swp
 .hypothesis/
 env/
+virtualenv/
