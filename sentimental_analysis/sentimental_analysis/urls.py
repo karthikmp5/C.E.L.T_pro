@@ -30,6 +30,7 @@ urlpatterns = [
     url(r'^audioanalysis',realworld.views.audioanalysis,name = 'audio analysis'),
     url(r'^tweetanalysis',realworld.views.tweetanalysis,name = 'tweet analysis'),
     url(r'^imageanalysis',realworld.views.imageanalysis,name = 'image analysis'),
+    url(r'^videoanalysis',realworld.views.videoanalysis,name = 'video analysis'),
 ]
 
 urlpatterns += static(settings.MEDIA_URL, document_root = settings.MEDIA_ROOT)
