@@ -32,6 +32,7 @@ urlpatterns = [
     url(r'^imageanalysis',realworld.views.imageanalysis,name = 'image analysis'),
     url(r'^videoanalysis',realworld.views.videoanalysis,name = 'video analysis'),
     url(r'^eateryanalysis',realworld.views.eateryanalysis,name = 'eatery analysis'),
+    url(r'^bloganalysis',realworld.views.bloganalysis,name = 'blog analysis'),
 ]
 
 urlpatterns += static(settings.MEDIA_URL, document_root = settings.MEDIA_ROOT)
