@@ -1,0 +1,14 @@
+.coverage
+.DS_Store
+.vscode
+.tox
+__pycache__
+black.egg-info
+build/
+dist/
+.idea
+.eggs
+.dmypy.json
+*.swp
+.hypothesis/
+env/
