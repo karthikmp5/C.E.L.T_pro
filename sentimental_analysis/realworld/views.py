@@ -339,6 +339,30 @@ def audioanalysis(request):
         note = "Please enter the audio file you want to analyze"
         return render(request, 'realworld/audio.html', {'note': note})
 
+def bloganalysis(request):
+    note = "Hey from Blog Analysis"
+    if request.method == 'POST':
+        bloglink = request.POST.get("blog", "")
+        response = requests.get(bloglink)
+        if response.status_code == 200:
+            soup = BeautifulSoup(response.text, 'html.parser')
+            webpage_text = ' '.join([p.get_text() for p in soup.find_all('p')])
+            blob = TextBlob(webpage_text)
+            sentiment_score = blob.sentiment.polarity
+            if sentiment_score > 0:
+                sentiment = "positive"
+            elif sentiment_score < 0:
+                sentiment = "negative"
+            else:
+                sentiment = "neutral"
+        print("Blog Analysis:")
+        result = detailed_analysis2(sentiment_score)
+        for i in result:
+            result[i] = result[i]/100
+        return render(request, 'realworld/sentiment_graph.html', {'sentiment': result})
+    else:
+        return render(request, 'realworld/bloganalysis.html', {'note': note})
+
 def eateryanalysis(request):
     if request.method == 'POST':
         blogname = request.POST.get("blogname", "")
