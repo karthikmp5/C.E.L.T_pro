@@ -339,6 +339,33 @@ def audioanalysis(request):
         note = "Please enter the audio file you want to analyze"
         return render(request, 'realworld/audio.html', {'note': note})
 
+def eateryanalysis(request):
+    if request.method == 'POST':
+        blogname = request.POST.get("blogname", "")
+
+        # text_file = open(
+        #     "D:/All Documents/Documents/2. Pro documents/Nokia final/Documents/MS/5. Universities/1. Done/NCSU/SE/project/SE_Project1/Amazon_Comments_Scrapper/amazon_reviews_scraping/amazon_reviews_scraping/spiders/ProductAnalysis.txt",
+        #     "w")
+        # text_file.write(blogname)
+        # text_file.close()
+        os.system(
+            f'scrapy runspider {os.path.join(base_directory, "Amazon_Comments_Scrapper/amazon_reviews_scraping/amazon_reviews_scraping/spiders/amazon_review.py")} -o reviews.json')
+        final_comment = []        
+        with open(os.path.join(base_directory, "sentimental_analysis/reviews.json")) as json_file:
+            data = json.load(json_file)
+            for p in range(1, len(data) - 1):
+                a = data[p]['comment']
+                final_comment.append(a)
+
+        # final_comment is a list of strings!
+        result = detailed_analysis(final_comment)
+        print(result)
+        return render(request, 'realworld/sentiment_graph.html', {'sentiment': result})
+
+    else:
+        note = "Please enter the restaurant review link for analysis"
+        return render(request, 'realworld/eateryanalysis.html', {'note': note})
+
 def speech_to_text(filename):
     r = sr.Recognizer()
 
