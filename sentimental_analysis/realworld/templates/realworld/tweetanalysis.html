@@ -82,8 +82,7 @@
         {% csrf_token %}
     <label for = "tweetlink"></label>
     <div class="container" style="width: 100%;">
-    <textarea class="form-control form-control-lg" type="text" name="tweetlink" rows = "2" cols="100" style="height: 150px; font-size: 16px; border: 1px solid #ccc; border-radius: 5px; top: 50%; left: 50%;">
-    </textarea>
+    <input class="form-control form-control-lg" id = "tweetlink" type="text" name="tweetlink">
     <br>
     <br>
     <button class="btn btn-secondary" type="reset" value="reset">Clear Text</button>
