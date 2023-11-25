@@ -15,6 +15,7 @@ from pdfminer.layout import LAParams
 from io import StringIO
 from .utilityFunctions import *
 import os
+from moviepy.editor import VideoFileClip
 import subprocess
 import json
 import speech_recognition as sr
@@ -22,6 +23,20 @@ from vaderSentiment.vaderSentiment import SentimentIntensityAnalyzer
 import torch
 from transformers import CLIPProcessor, CLIPModel
 from PIL import Image
+import cv2
+import tensorflow as tf
+from moviepy.editor import VideoFileClip
+from tensorflow.keras.applications import VGG16
+from tensorflow.keras.applications.vgg16 import preprocess_input
+import numpy as np
+from werkzeug.utils import secure_filename
+from .video import pred, removeout, vidframe, ssimscore1
+from matplotlib import pyplot as plt
+import io
+import base64
+import urllib
+from django.core.files.storage import default_storage
+from django.core.files.storage import FileSystemStorage
 
 # Determine the base directory(SE_Project1) of your project
 result = subprocess.check_output(['git', 'rev-parse', '--show-toplevel'])
@@ -344,6 +359,55 @@ def sentiment_analyzer_scores(sentence):
     return score
 
 
+
+def videoanalysis(request):
+    if request.method == 'POST':
+
+        f = request.FILES['video']  #getting uploaded video 
+        # print(f)
+        basepath = os.path.dirname(__file__)
+        file_path = os.path.join(basepath, 'uploads', secure_filename(f.name))
+        fs = FileSystemStorage(location=os.path.join(basepath, 'uploads'))
+        fs.save(f.name, f)
+        # file_name = default_storage.save(file_path, f)
+
+        result, face = vidframe(file_path) #running vidframe with the uploaded video
+        os.remove(file_path)  #removing the video as we dont need it anymore
+
+        try:
+            smileindex=result.count('happy')/len(result)  #smileIndex
+            smileindex=round(smileindex,2)
+
+        except:
+            smileindex=0
+
+        ssimscore=[ssimscore1(i,j) for i, j in zip(face[: -1],face[1 :])]  # calculating similarityscore for images
+        if np.mean(ssimscore)<0.6:
+            posture="Not Good"
+        else:
+            posture="Good"
+        fig = plt.figure()     #matplotlib plot
+        ax = fig.add_axes([0,0,1,1])
+        ax.axis('equal')
+        emotion = ['angry','disgust','fear', 'happy', 'sad']
+        counts = [result.count('angry'),result.count('disgust'),result.count('fear'),result.count('happy'),result.count('sad')]
+        res_dict = {}
+        for i in range(len(emotion)):
+            res_dict[emotion[i]] = int(counts[i])
+        total_value = 0
+        for i in res_dict:
+            total_value += res_dict[i]
+        for i in res_dict:
+            res_dict[i] = res_dict[i]/total_value
+        ax.pie(counts, labels = emotion,autopct='%1.2f%%')   #adding pie chart
+        img = io.BytesIO()
+        plt.savefig(img, format='png')   #saving piechart
+        img.seek(0)
+        plot_data = urllib.parse.quote(base64.b64encode(img.read()).decode()) #piechart object that can be returned to the html
+        return render(request, "realworld/videoprediction.html", {'posture': posture, 'smileindex': smileindex, 'plot_url': plot_data, 'sentiment': res_dict}) #returning all the three variable that can be displayed in html
+    else:
+        note = "Please enter the video file you want to analyze"
+        return render(request, 'realworld/videoanalysis.html', {'note': note})
 
 
 @register.filter(name='get_item')
