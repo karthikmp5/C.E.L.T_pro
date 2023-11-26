@@ -51,42 +51,46 @@ Here are our core features:
 5. Audio analysis: Audio analysis accepts a wave (.wav) format audio file as input, analyses it using speech recognition and SentimentIntensityAnalyzer and presents the output as as graph which displays positive sentiment percentage, negative sentiment percentage and neutral sentiment percentage.
 6. Product review analysis: This module accepts a product review link as input, analyses it using scrapy and presents the output as as graph which displays positive sentiment percentage, negative sentiment percentage and neutral sentiment percentage.
 All of the above, now presented in a more user-friendly interface
+7. Video analysis: Video analysis accepts a video file as input, analyses it using video sentiment analysis model and presents the output as a graph which displays positive sentiment percentage, negative sentiment percentage and neutral sentiment percentage.
+8. Blog analysis: Blog analysis accepts a blog link as input, analyses it using scrapy and presents the output as as graph which displays positive sentiment percentage, negative sentiment percentage and neutral sentiment percentage.
+9. Restaurant review analysis: Restaurant review analysis accepts a restaurant review link as input, analyses it using scrapy and presents the output as as graph which displays positive sentiment percentage, negative sentiment percentage and neutral sentiment percentage.
 
-## How is C.E.L.T Pro different from C.E.L.T? Read all about our feature additions and enhancements!
-C.E.L.T Pro has undergone significant improvements that elevate this version to a higher level. Our team has meticulously designed and integrated a multitude of new features, both major and minor, to ensure that users of C.E.L.T Pro are provided with superior performance and functionality.<br>
-# Major Enhancements<br>
-1. Improved accuracy of text analysis: One of the critical changes we implemented was to improve the efficiency of the existing Text Analysis. As of our team started to analyze the features offered by the project, we noticed that the sentiment being analyzed from the input text that was provided had very low accuracy. Since Text Analysis one of the major features, there was a potential need to enhance its accuracy. We decided that the priority of this story would be high and enhanced the algorithm which is now being used by the project to give accurate sentiment of the input text. For instance, the previous version of C.E.L.T. had a tendency to misclassify certain text inputs, such as the phrase "not good," as positive. However, our current version of the software has been significantly improved in terms of accuracy and is now capable of addressing these and similar issues.  [Video demonstration of the improvement](https://youtu.be/hVeRBwUCuGw)
-2. Tweet Analysis: The second feature we worked on was to add the Tweet Analysis. This feature accept the url to the tweet as the input to be analyzed and returns the sentiment of the tweet after analyzing it. It can be found under the Tweet header in the UI and can also be accessed by the Tweet Analysis container in the Home page.
-3. Image Analysis: The next enhancement was to add Image Analysis. This feature accepts the image [.jpg and .jpeg formats] as the input. It analyses the sentiment of the image and then return that as the output. This feature is made accessible under the Image Analysis container and also under the Image tab of the UI. <br>
-# Minor Enhancements<br>
-1. The User Interface was improved to make it more user-friendly. 
-2. Changed the absolute path referencing that was being used to relative path to eliminate the path reconfiguration that the users had to perform earlier.
-3. The requirements.txt file was modified to download the packages with the versions >= the ones being mentioned to enable forward compatibility. 
+## How is C.E.L.T Plus different from C.E.L.T? Read all about our feature additions and enhancements!
+C.E.L.T Plus has undergone significant improvements that elevate this version to a higher level. Our team has meticulously designed and integrated a multitude of new features, both major and minor, to ensure that users of C.E.L.T Plus are provided with superior performance and functionality.<br>
+### Major Enhancements<br>
+1. Video Analysis: The first major feature we worked on was to add the Video Analysis. This feature accepts the video file as the input to be analyzed and returns the sentiment of the video after analyzing it. It can be found under the Video header in the UI and can also be accessed by the Video Analysis container in the Home page.
+2. Blog Analysis: The second major feature we worked on was to add the Blog Analysis. This feature accepts the blog link as the input to be analyzed and returns the sentiment of the blog after analyzing it. It can be found under the Blog header in the UI and can also be accessed by the Blog Analysis container in the Home page.
+3. Restaurant Review Analysis: The third major feature we worked on was to add the Restaurant Review Analysis. This feature accepts the restaurant review link as the input to be analyzed and returns the sentiment of the restaurant review after analyzing it. It can be found under the Restaurant Review header in the UI and can also be accessed by the Restaurant Review Analysis container in the Home page.<br>
+### Minor Enhancements<br>
+1. The User Interface was improved to make it more user-friendly.
+2. The requirements.txt file was modified to download the packages with the versions >= the ones being mentioned to enable forward compatibility. 
+3. Documentation was added to the code to make it more readable and understandable.
 <br>
 
 ## Release Made in this cycle <br>
-1. Critical release 1.0 - Included the priority fix to improve the accuracy of the text analysis along with the image and tweet analysis features.
-2. Release 1.1 - Minor version release to make UI changes.
-3. Release 2.0 - Included the minor enhancements and the fixes to the issues reported.<br>
-[Read our detailed release notes](https://github.com/karthikmp5/C.E.L.T_pro/releases) <br>
+1. Critical release 1.0 - Initial release of the application with all the major features.
+2. Release 2.0 - Included UI for new features and fixed issues with inputs in some of the features<br>
+[Read our detailed release notes](https://github.com/blackhawk005/C.E.L.T_plus/releases) <br>
 <br>
 
-The complete development was achieved using the following technologies:<br>
-Python3 <br>
-Django<br>
-HTML<br>
-CSS<br>
-Scrappy<br>
-Vader Analysis Tool<br>
-BeautifulSoup<br>
-Textblob<br>
+## Technology Stack
+![Python](https://img.shields.io/badge/PYTHON-6DA55F?style=for-the-badge&logo=python)
+![Django](https://img.shields.io/badge/DJANGO-2320232?style=for-the-badge&logo=django)
+![HTML](https://img.shields.io/badge/HTML5-E34F26?style=for-the-badge&logo=html5&logoColor=white)
+![CSS](https://img.shields.io/badge/CSS3-1572B6?style=for-the-badge&logo=css3&logoColor=white)
+![Scrappy](https://img.shields.io/badge/SCRAPPY-23404d?style=for-the-badge&)
+![Vader Analysis Tool](https://img.shields.io/badge/Vader%20Analysis%20Tool%20-%20%23750413?style=for-the-badge)
+![BeautifulSoup](https://img.shields.io/badge/BeautifulSoup%20-%20%235d60f0?style=for-the-badge)
+![Textblob](https://img.shields.io/badge/TextBlob%20-%20%23b5af04?style=for-the-badge)
+
+## Dependencies
 Our requirements file has all packages that will be required. For details on all packages that were used, we invite you to read [Requirements](requirements.txt)
 
 
 
 ## Steps for execution
 1. Run `pip install -r requirements.txt` followed by `python -c "import nltk; nltk.download('punkt'); nltk.download('stopwords')"`
-2. Execute manage.py using the command `python3 manage.py runserver` at `/SE_Project1/sentimental_analaysis`. This runs the Django server such that we can open the webUI for the project on the browser.
+2. Execute manage.py using the command `python3 manage.py runserver` at `/C.E.L.T_plus/sentimental_analaysis`. This runs the Django server such that we can open the webUI for the project on the browser.
 3. Next, open your browser and type in `localhost:8000` in the search bar to open the webUI of the application.
 4. You are now fully equipped to analyze sentiment across various data types, including text, documents, reviews, audio, images, and tweets.
 5. If you face any issues while executing, refer this [VIDEO TUTORIAL](https://drive.google.com/file/d/17Bf7iwb8wPozZ53BUCVQEszitDcmSbSR/view?usp=share_link) to set the application up. We have also provided our group email address if you need more help towards the end of the file.
@@ -100,14 +104,14 @@ Recommendation system based on analysis results.
 
 Live speech to text sentiment analysis.
 
-Extend the analysis to the Facebook, Twitter and LinkedIn Posts
+Extend the analysis to the Facebook and LinkedIn Posts
 
 ## Team Members
 
-Annadurai,Harshitha <br>
-Bhoja Ramamanohara,Pannaga Rao <br>
-Masineni Prasanna Kumar,Karthik <br>
-Niranjana,Prathima Putreddy <br>
+[Atharva Joshi](https://github.com/aj0671) <br>
+[Shubham Wawale](https://github.com/shubham-wawale) <br>
+[Sahil Purohit](https://github.com/Sahil-18) <br>
+[Shinit Shetty](https://github.com/blackhawk005) <br>
 
 ## Troubleshooting and Support
 Common issues observed and solutions:<br>
