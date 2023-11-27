@@ -192,6 +192,7 @@ def input(request):
         return render(request, 'realworld/home.html', {'note': note})
 
 def productanalysis(request):
+    
     if request.method == 'POST':
         blogname = request.POST.get("blogname", "")
 
