@@ -18,15 +18,11 @@
 
 [![code style: prettier](https://img.shields.io/badge/code_style-prettier-ff69b4.svg?style=flat-square)](https://github.com/prettier/prettier)
 
-![Open Issues](https://img.shields.io/github/issues-raw/karthikmp5/C.E.L.T_pro)
+![Open Issues](https://img.shields.io/github/issues/blackhawk005/C.E.L.T_plus)
 
-![Closed Issues](https://img.shields.io/github/issues-closed-raw/karthikmp5/C.E.L.T_pro)
+![Closed Issues](https://img.shields.io/github/issues-closed/blackhawk005/C.E.L.T_Plus)
 
 ![CI/CD](https://img.shields.io/badge/CI/CD-Passing-brightgreen)
-
-
-
-
 
 
 ## What is C.E.L.T?
