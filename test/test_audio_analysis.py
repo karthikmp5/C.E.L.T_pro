@@ -5,12 +5,13 @@ from django.core.files.uploadedfile import SimpleUploadedFile
 from django.test import Client
 
 # Unit Test Case for Audio Sentiment Analyzer
-class TweetSentimentAnalyzerTestCase(unittest.TestCase):
+class AudioSentimentAnalyzerTestCase(unittest.TestCase):
     
     # Setup
-    def tweet(self):
+    def audio(self):
+        audio = SimpleUploadedFile('test_wv.wav', "file_content", content_type="audio/wav")
         c = Client()
-        response = c.post("/tweetanalysis/", {"tweetlink": 'https://x.com/tedfrank/status/1728268149517177197?s=20'})
+        response = c.post("/audioanalysis/", {"document": audio})
         self.assertEqual(response.status_code, 200)
         
 

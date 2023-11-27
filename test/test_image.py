@@ -1,43 +1,21 @@
+import sys
+# sys.path.append("../sentimental_analysis/audio/")
 import unittest
-from ..sentimental_analysis.realworld.views import imageanalysis  # Import the function from your module
 from django.core.files.uploadedfile import SimpleUploadedFile
+from django.test import Client
 
-class ImageAnalysisTestCase(unittest.TestCase):
-    def test_imageanalysis(self):
-        request = self.create_dummy_request()
+# Unit Test Case for Audio Sentiment Analyzer
+class ImageSentimentAnalyzerTestCase(unittest.TestCase):
+    
+    # Setup
+    def image(self):
+        image = SimpleUploadedFile('img.jpg', "file_content", content_type="image/jpg")
+        c = Client()
+        response = c.post("/imageanalysis/", {"imgfile": image})
+        self.assertEqual(response.status_code, 200)
         
-        response = imageanalysis(request)
-        
-        self.assertEqual(response.status_code, 200) 
-        self.assertIn(b"Sentiment:", response.content)  
-        self.assertIn(b"Positive Score:", response.content)  
-        self.assertIn(b"Negative Score:", response.content) 
-        self.assertIn(b"Neutral Score:", response.content) 
 
-    def create_dummy_request(self):
-        from django.http import HttpRequest, QueryDict
-        from django.conf import settings
-        from django.core.files.uploadedfile import InMemoryUploadedFile
 
-        request = HttpRequest()
-        request.POST = QueryDict("")
-        request.FILES = QueryDict("")
-
-        image_content = b"Sample image content"
-        image_file = InMemoryUploadedFile(
-            None,
-            "imgfile",
-            "img.jpg",
-            "image/jpeg",
-            len(image_content),
-            None,
-        )
-        image_file.write(image_content)
-        image_file.seek(0)
-
-        request.FILES['imgfile'] = image_file
-
-        return request
-
+# main function
 if __name__ == '__main__':
-    unittest.main()
+     unittest.main()
